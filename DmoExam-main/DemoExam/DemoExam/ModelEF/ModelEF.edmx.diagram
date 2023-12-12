@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e254204b2d17454599efebc6286d4ecf" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_DmExamModel.EquipmentType" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_DmExamModel.Order" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_DmExamModel.ProblemType" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_DmExamModel.Role" Width="1.5" PointX="1.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_DmExamModel.Status" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_DmExamModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_DmExamModel.Technician" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_DmExamModel.User" Width="1.5" PointX="3.75" PointY="8.5" IsExpanded="true" />
+        <AssociationConnector Association="DB_DmExamModel.FK_Orders_EquipmentTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_DmExamModel.FK_Technicians_EquipmentTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_DmExamModel.FK_Technicians_EquipmentTypes1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_DmExamModel.FK_Technicians_EquipmentTypes2" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_DmExamModel.FK_Orders_ProblemTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_DmExamModel.FK_Orders_Statuses" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_DmExamModel.FK_Orders_Technicians" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_DmExamModel.FK_Orders_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_DmExamModel.FK_Users_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_DmExamModel.FK_Technicians_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_DmExamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="EquipmentType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EqimentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_EquipmentTypes" FromRole="EquipmentTypes" ToRole="Orders" />
+    <NavigationProperty Name="Technicians" Relationship="Self.FK_Technicians_EquipmentTypes" FromRole="EquipmentTypes" ToRole="Technicians" />
+    <NavigationProperty Name="Technicians1" Relationship="Self.FK_Technicians_EquipmentTypes1" FromRole="EquipmentTypes" ToRole="Technicians" />
+    <NavigationProperty Name="Technicians2" Relationship="Self.FK_Technicians_EquipmentTypes2" FromRole="EquipmentTypes" ToRole="Technicians" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Client" Type="Int32" Nullable="false" />
+    <Property Name="ID_TypeEquipment" Type="Int32" />
+    <Property Name="ID_TypeProblem" Type="Int32" Nullable="false" />
+    <Property Name="ID_Technician" Type="Int32" Nullable="false" />
+    <Property Name="ID_Manager" Type="Int32" />
+    <Property Name="ID_Status" Type="Int32" Nullable="false" />
+    <Property Name="DateOrderOpen" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DateOrderClose" Type="DateTime" Precision="0" />
+    <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EquipmentType" Relationship="Self.FK_Orders_EquipmentTypes" FromRole="Orders" ToRole="EquipmentTypes" />
+    <NavigationProperty Name="ProblemType" Relationship="Self.FK_Orders_ProblemTypes" FromRole="Orders" ToRole="ProblemTypes" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Orders_Statuses" FromRole="Orders" ToRole="Statuses" />
+    <NavigationProperty Name="Technician" Relationship="Self.FK_Orders_Technicians" FromRole="Orders" ToRole="Technicians" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Orders_Users" FromRole="Orders" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="ProblemType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProblemType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_ProblemTypes" FromRole="ProblemTypes" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Statuses" FromRole="Statuses" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Technician">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_user" Type="Int32" Nullable="false" />
+    <Property Name="ID_TypeEquipment_1" Type="Int32" />
+    <Property Name="ID_TypeEquipment_2" Type="Int32" />
+    <Property Name="ID_TypeEquipment_3" Type="Int32" />
+    <Property Name="OtherSkills" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProfileLink" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EquipmentType" Relationship="Self.FK_Technicians_EquipmentTypes" FromRole="Technicians" ToRole="EquipmentTypes" />
+    <NavigationProperty Name="EquipmentType1" Relationship="Self.FK_Technicians_EquipmentTypes1" FromRole="Technicians" ToRole="EquipmentTypes" />
+    <NavigationProperty Name="EquipmentType2" Relationship="Self.FK_Technicians_EquipmentTypes2" FromRole="Technicians" ToRole="EquipmentTypes" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Technicians" FromRole="Technicians" ToRole="Orders" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Technicians_Users" FromRole="Technicians" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nikname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ID_role" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Users" FromRole="Users" ToRole="Orders" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+    <NavigationProperty Name="Technicians" Relationship="Self.FK_Technicians_Users" FromRole="Users" ToRole="Technicians" />
+  </EntityType>
+  <Association Name="FK_Orders_EquipmentTypes">
+    <End Role="EquipmentTypes" Type="Self.EquipmentType" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EquipmentTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ID_TypeEquipment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Technicians_EquipmentTypes">
+    <End Role="EquipmentTypes" Type="Self.EquipmentType" Multiplicity="0..1" />
+    <End Role="Technicians" Type="Self.Technician" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EquipmentTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Technicians">
+        <PropertyRef Name="ID_TypeEquipment_1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Technicians_EquipmentTypes1">
+    <End Role="EquipmentTypes" Type="Self.EquipmentType" Multiplicity="0..1" />
+    <End Role="Technicians" Type="Self.Technician" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EquipmentTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Technicians">
+        <PropertyRef Name="ID_TypeEquipment_2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Technicians_EquipmentTypes2">
+    <End Role="EquipmentTypes" Type="Self.EquipmentType" Multiplicity="0..1" />
+    <End Role="Technicians" Type="Self.Technician" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EquipmentTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Technicians">
+        <PropertyRef Name="ID_TypeEquipment_3" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_ProblemTypes">
+    <End Role="ProblemTypes" Type="Self.ProblemType" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProblemTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ID_TypeProblem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Statuses">
+    <End Role="Statuses" Type="Self.Status" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuses">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ID_Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Technicians">
+    <End Role="Technicians" Type="Self.Technician" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Technicians">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ID_Technician" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ID_Client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="ID_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Technicians_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Technicians" Type="Self.Technician" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Technicians">
+        <PropertyRef Name="ID_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_DmExamEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EquipmentTypes" EntityType="Self.EquipmentType" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="ProblemTypes" EntityType="Self.ProblemType" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Statuses" EntityType="Self.Status" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Technicians" EntityType="Self.Technician" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Orders_EquipmentTypes" Association="Self.FK_Orders_EquipmentTypes">
+      <End Role="EquipmentTypes" EntitySet="EquipmentTypes" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Technicians_EquipmentTypes" Association="Self.FK_Technicians_EquipmentTypes">
+      <End Role="EquipmentTypes" EntitySet="EquipmentTypes" />
+      <End Role="Technicians" EntitySet="Technicians" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Technicians_EquipmentTypes1" Association="Self.FK_Technicians_EquipmentTypes1">
+      <End Role="EquipmentTypes" EntitySet="EquipmentTypes" />
+      <End Role="Technicians" EntitySet="Technicians" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Technicians_EquipmentTypes2" Association="Self.FK_Technicians_EquipmentTypes2">
+      <End Role="EquipmentTypes" EntitySet="EquipmentTypes" />
+      <End Role="Technicians" EntitySet="Technicians" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_ProblemTypes" Association="Self.FK_Orders_ProblemTypes">
+      <End Role="ProblemTypes" EntitySet="ProblemTypes" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Statuses" Association="Self.FK_Orders_Statuses">
+      <End Role="Statuses" EntitySet="Statuses" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Technicians" Association="Self.FK_Orders_Technicians">
+      <End Role="Technicians" EntitySet="Technicians" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Technicians_Users" Association="Self.FK_Technicians_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Technicians" EntitySet="Technicians" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
